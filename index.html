@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine KEZZY 💛</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  overflow:hidden;
+}
+
+.page{
+  position:absolute;
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  opacity:0;
+  transform:scale(0.95);
+  transition: all 0.8s ease;
+  pointer-events:none;
+}
+
+.page.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+h1{
+  font-size:2.4rem;
+  margin-bottom:15px;
+  color:#5e2b97;
+}
+
+p{
+  font-size:1.2rem;
+  max-width:650px;
+  color:#333;
+  line-height:1.7;
+}
+
+button{
+  margin-top:25px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background: linear-gradient(135deg, #ff80ab, #ff4081);
+  color:white;
+  font-size:1.1rem;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+img{
+  max-width:260px;
+  border-radius:20px;
+  margin:20px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Floating emojis */
+.floating{
+  position:absolute;
+  font-size:1.8rem;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{ transform:translateY(100vh); opacity:1; }
+  to{ transform:translateY(-10vh); opacity:0; }
+}
+
+/* Glitter stars */
+.star{
+  position:absolute;
+  font-size:1rem;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle{
+  0%{opacity:0;}
+  50%{opacity:1;}
+  100%{opacity:0;}
+}
+
+/* Fireworks */
+.firework{
+  position:absolute;
+  font-size:2rem;
+  animation: boom 2.5s ease-out forwards;
+}
+
+@keyframes boom{
+  0%{ transform:scale(0); opacity:1; }
+  50%{ transform:scale(1.5); opacity:1; }
+  100%{ transform:scale(2); opacity:0; }
+}
+
+/* Closing message */
+.closing{
+  position:absolute;
+  font-size:2.2rem;
+  font-weight:bold;
+  color:#ff4081;
+  animation: riseFade 5s ease-out forwards;
+}
+
+@keyframes riseFade{
+  from{ transform:translateY(120px); opacity:1; }
+  to{ transform:translateY(-200px); opacity:0; }
+}
+
+/* DARK TAP OVERLAY */
+#overlay{
+  position:fixed;
+  inset:0;
+  background:#000;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  z-index:999;
+  cursor:pointer;
+  padding:30px;
+}
+
+#overlay div{
+  font-size:1.3rem;
+  line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div id="overlay">
+  <div>
+    <strong>HERE IS YOUR LONG AWAITED VALENTINE SURPRISE 💛</strong><br><br>
+    TAP ANYWHERE TO REVEAL ✨<br><br>
+    HOPE YOU WILL LOVE IT 💖<br>
+    ENJOY 🌸
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Hey KEZZY 💛</h1>
+  <p>
+    This isn’t a love confession…<br>
+    It’s something even better 🌸<br><br>
+    A little Valentine surprise from<br>
+    someone grateful to call you a best friend ✨
+  </p>
+  <button onclick="nextPage()">Next 💐</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>To My Favorite Human 🌼</h1>
+  <p>
+    Happy Valentine’s Day, Bestie 🫶<br><br>
+    Thank you for the laughs,<br>
+    the talks, the support,<br>
+    and the way you make life brighter 💛
+  </p>
+  <button onclick="nextPage()">Next 🌸</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Best Friend Energy 🌟</h1>
+  <img src="kezzy.jpg" alt="KEZZY">
+  <p>
+    KEZZY, you’re appreciated more than words can say 💙<br>
+    Forever grateful for you ✨
+  </p>
+  <button onclick="nextPage()">Celebrate 🎉</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h1>HAPPY VALENTINE’S DAY 🎊</h1>
+  <p>
+    💛 To more memory making 📝<br>
+    💛 To more fun 😁🎈<br>
+    💛 To many more bestie valentines 💝💖<br>
+    💛 To more inside jokes 😜🃏<br>
+    💛 To more and future winnings 🏆🥇🥂<br><br>
+    You matter. You’re loved. You’re valued 💯✨
+  </p>
+</div>
+
+<script>
+let current = 1;
+const music = document.getElementById("bgMusic");
+const overlay = document.getElementById("overlay");
+
+overlay.addEventListener("click", () => {
+  music.play();
+  overlay.style.display = "none";
+});
+
+function nextPage(){
+  if(current >= 4) return;
+  document.getElementById("page"+current).classList.remove("active");
+  current++;
+  document.getElementById("page"+current).classList.add("active");
+
+  if(current === 4){
+    startCelebration();
+  }
+}
+
+/* Floating emojis */
+const emojis = ["💛","💖","💐","🌸","😍","✨","🎉","🎊"];
+setInterval(()=>{
+  const el = document.createElement("div");
+  el.className="floating";
+  el.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  el.style.left = Math.random()*100 + "vw";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+},500);
+
+/* Glitter stars */
+setInterval(()=>{
+  const star = document.createElement("div");
+  star.className="star";
+  star.innerText="✨";
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+  document.body.appendChild(star);
+  setTimeout(()=>star.remove(),2000);
+},400);
+
+/* Final celebration */
+function startCelebration(){
+  setInterval(()=>{
+    const fw = document.createElement("div");
+    fw.className="firework";
+    fw.innerText="🎆";
+    fw.style.left=Math.random()*100+"vw";
+    fw.style.top=Math.random()*60+"vh";
+    document.body.appendChild(fw);
+    setTimeout(()=>fw.remove(),2500);
+  },600);
+
+  setInterval(()=>{
+    const msg = document.createElement("div");
+    msg.className="closing";
+    msg.innerText="Happy valentines Bestie 🎉🎊😍";
+    msg.style.left=Math.random()*80+"vw";
+    document.body.appendChild(msg);
+    setTimeout(()=>msg.remove(),5000);
+  },1200);
+}
+</script>
+
+</body>
+</html>
